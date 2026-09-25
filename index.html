@@ -202,7 +202,7 @@
         display: inline-flex;
         align-items: center;
         position: relative;
-        gap: 4px;
+        gap: 8px;
         min-height: 48px;
         border: 0;
         border-radius: 999px;
@@ -244,9 +244,8 @@
       .mail-label-stack {
         display: grid;
         align-items: center;
-        width: var(--mail-label-width, auto);
         overflow: hidden;
-        transition: width 300ms var(--theme-ease);
+        transition: width 320ms var(--theme-ease);
       }
 
       .mail-icon-stack {
@@ -261,19 +260,25 @@
 
       .mail-icon-copy,
       .mail-label-copied {
+        width: 0;
         opacity: 0;
+        overflow: hidden;
         transform: translateY(5px) scale(0.96);
       }
 
       .mail-link.is-copied .mail-icon-default,
       .mail-link.is-copied .mail-label-default {
+        width: 0;
         opacity: 0;
+        overflow: hidden;
         transform: translateY(-5px) scale(0.96);
       }
 
       .mail-link.is-copied .mail-icon-copy,
       .mail-link.is-copied .mail-label-copied {
+        width: auto;
         opacity: 1;
+        overflow: visible;
         transform: translateY(0) scale(1);
       }
 
@@ -807,23 +812,6 @@
           return;
         }
 
-        let resetTimer;
-        const labelStack = mailButton.querySelector(".mail-label-stack");
-        const defaultLabel = mailButton.querySelector(".mail-label-default");
-        const copiedLabel = mailButton.querySelector(".mail-label-copied");
-
-        function labelWidth(label) {
-          return `${Math.ceil(label.getBoundingClientRect().width)}px`;
-        }
-
-        function setLabelWidth(label) {
-          if (labelStack && label) {
-            labelStack.style.setProperty("--mail-label-width", labelWidth(label));
-          }
-        }
-
-        requestAnimationFrame(() => setLabelWidth(defaultLabel));
-
         async function copyText(text) {
           if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(text);
@@ -843,13 +831,7 @@
 
         mailButton.addEventListener("click", async () => {
           await copyText(mailButton.dataset.email);
-          setLabelWidth(copiedLabel);
           mailButton.classList.add("is-copied");
-          clearTimeout(resetTimer);
-          resetTimer = setTimeout(() => {
-            setLabelWidth(defaultLabel);
-            mailButton.classList.remove("is-copied");
-          }, 1800);
         });
       })();
     </script>

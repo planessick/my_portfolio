@@ -92,7 +92,17 @@
         transform: translateX(-96px);
         z-index: 2;
         width: 72px;
-        margin-bottom: 24px;
+      }
+
+      .case-topbar {
+        position: relative;
+        margin-bottom: 16px;
+      }
+
+      .case-topbar .case-back-column {
+        position: absolute;
+        top: 0;
+        left: 0;
       }
 
       .case-content {
@@ -150,6 +160,72 @@
 
       :root[data-theme="light"] .back-link img {
         filter: invert(1);
+      }
+
+      .case-view-switch {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        position: relative;
+        width: 100%;
+        min-height: 72px;
+        padding: 4px;
+        border-radius: 999px;
+        background: var(--surface);
+        transition: background-color 360ms var(--theme-ease);
+      }
+
+      .case-view-switch::before {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: calc((100% - 8px) / 2);
+        height: calc(100% - 8px);
+        border-radius: 999px;
+        background: var(--card);
+        content: "";
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        transition:
+          transform 420ms var(--theme-ease),
+          background-color 360ms var(--theme-ease),
+          box-shadow 360ms var(--theme-ease);
+      }
+
+      :root[data-theme="dark"] .case-view-switch::before {
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.24);
+      }
+
+      .case-view-switch[data-active="short"]::before {
+        transform: translateX(100%);
+      }
+
+      .case-view-switch button {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        min-width: 0;
+        min-height: 64px;
+        padding: 0 24px;
+        border: 0;
+        outline: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--muted);
+        font: inherit;
+        font-size: 16px;
+        line-height: 1;
+        cursor: pointer;
+        transition: color 240ms var(--theme-ease);
+      }
+
+      .case-view-switch button[aria-pressed="true"] {
+        color: var(--text);
+      }
+
+      .case-view-switch button:focus,
+      .case-view-switch button:focus-visible {
+        outline: 0;
+        box-shadow: none;
       }
 
       .theme-switch {
@@ -446,8 +522,19 @@
         .case-back-column {
           position: static;
           width: 72px;
-          margin-bottom: 12px;
           transform: none;
+        }
+
+        .case-topbar {
+          display: grid;
+          grid-template-columns: 72px minmax(0, 1fr);
+          gap: 12px;
+          align-items: center;
+          margin-bottom: 12px;
+        }
+
+        .case-topbar .case-back-column {
+          position: static;
         }
 
         .case-content {
@@ -487,6 +574,22 @@
         .back-link {
           width: 72px;
           height: 48px;
+        }
+
+        .case-topbar {
+          grid-template-columns: 72px minmax(0, 1fr);
+          gap: 8px;
+          margin-bottom: 8px;
+        }
+
+        .case-view-switch {
+          min-height: 48px;
+        }
+
+        .case-view-switch button {
+          min-height: 40px;
+          padding: 0 12px;
+          font-size: 14px;
         }
 
         .hero,
@@ -530,10 +633,17 @@
   <body>
     <main class="case-page">
       <div class="case-content">
-        <div class="case-back-column">
-          <a class="back-link" href="index.html" aria-label="Вернуться на главную">
-            <img src="assets/arrow.svg" alt="">
-          </a>
+        <div class="case-topbar">
+          <div class="case-back-column">
+            <a class="back-link" href="index.html" aria-label="Вернуться на главную">
+              <img src="assets/arrow.svg" alt="">
+            </a>
+          </div>
+
+          <div class="case-view-switch" data-active="full" role="radiogroup" aria-label="Формат кейса">
+            <button type="button" data-view-option="full" aria-pressed="true">Полностью</button>
+            <button type="button" data-view-option="short" aria-pressed="false">Кратко</button>
+          </div>
         </div>
 
         <article class="hero">
@@ -651,6 +761,8 @@
       (() => {
         const root = document.documentElement;
         const buttons = document.querySelectorAll("[data-theme-option]");
+        const viewSwitch = document.querySelector(".case-view-switch");
+        const viewButtons = document.querySelectorAll("[data-view-option]");
 
         function setTheme(theme) {
           root.dataset.theme = theme;
@@ -666,6 +778,19 @@
         });
 
         setTheme(root.dataset.theme || "light");
+
+        function setCaseView(view) {
+          if (!viewSwitch) return;
+          viewSwitch.dataset.active = view;
+          viewButtons.forEach((button) => {
+            const isActive = button.dataset.viewOption === view;
+            button.setAttribute("aria-pressed", String(isActive));
+          });
+        }
+
+        viewButtons.forEach((button) => {
+          button.addEventListener("click", () => setCaseView(button.dataset.viewOption));
+        });
       })();
     </script>
   </body>

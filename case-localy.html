@@ -73,24 +73,49 @@
       }
 
       .case-page {
-        width: min(calc(100vw - 48px), 1284px);
+        display: grid;
+        grid-template-columns: 120px minmax(0, 1fr) 240px;
+        gap: 24px;
+        align-items: start;
+        width: min(calc(100vw - 200px), 1484px);
         margin: 0 auto;
         padding: 24px 0 48px;
       }
 
-      .topbar {
+      .case-back-column {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 16px;
+        justify-content: flex-start;
       }
 
-      .pill-link,
-      .icon-button {
+      .case-content {
+        min-width: 0;
+      }
+
+      .case-aside {
+        position: sticky;
+        top: 24px;
+        width: 240px;
+        min-height: 320px;
+        border-radius: var(--radius-xl);
+        background: var(--surface);
+        padding: 8px;
+        transition: background-color 360ms var(--theme-ease);
+      }
+
+      .case-aside-inner {
+        min-height: 304px;
+        border-radius: var(--radius-lg);
+        background: var(--card);
+        padding: 24px;
+        transition: background-color 360ms var(--theme-ease);
+      }
+
+      .back-link {
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        width: 118px;
+        height: 80px;
         border: 0;
         border-radius: 999px;
         background: var(--surface);
@@ -104,38 +129,29 @@
           opacity 180ms ease;
       }
 
-      .pill-link {
-        gap: 8px;
-        min-height: 48px;
-        padding: 12px 16px;
-        font-size: 16px;
-        line-height: 1.4;
-      }
-
-      .pill-link:hover,
-      .icon-button:hover {
+      .back-link:hover {
         transform: translateY(-1px);
       }
 
-      .pill-link img {
-        width: 16px;
-        height: 16px;
+      .back-link img {
+        width: 28px;
+        height: 28px;
         transform: rotate(180deg);
       }
 
-      :root[data-theme="light"] .pill-link img {
+      :root[data-theme="light"] .back-link img {
         filter: invert(1);
       }
 
       .theme-switch {
         display: grid;
-        grid-template-columns: 44px 44px;
+        grid-template-columns: 56px 56px;
         position: relative;
         gap: 4px;
-        width: 104px;
-        height: 49px;
+        width: 124px;
+        height: 48px;
         padding: 4px;
-        border-radius: 12px;
+        border-radius: 999px;
         background: #f1f1f1;
         transition: background-color 360ms var(--theme-ease);
       }
@@ -148,9 +164,9 @@
         position: absolute;
         top: 4px;
         left: 4px;
-        width: 44px;
-        height: 41px;
-        border-radius: 9px;
+        width: 56px;
+        height: 40px;
+        border-radius: 999px;
         background: #fff;
         content: "";
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -161,7 +177,7 @@
       }
 
       :root[data-theme="dark"] .theme-switch::before {
-        transform: translateX(48px);
+        transform: translateX(60px);
         background: #0f0f0f;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.42);
       }
@@ -171,18 +187,18 @@
         z-index: 1;
         display: grid;
         place-items: center;
-        width: 44px;
-        height: 41px;
+        width: 56px;
+        height: 40px;
         padding: 0;
         border: 0;
-        border-radius: 9px;
+        border-radius: 999px;
         background: transparent;
         cursor: pointer;
       }
 
       .theme-switch img {
-        width: 16px;
-        height: 16px;
+        width: 20px;
+        height: 20px;
         opacity: 0.58;
         transform: scale(0.92);
         transition:
@@ -198,6 +214,23 @@
 
       :root[data-theme="dark"] .theme-switch img {
         filter: invert(1);
+      }
+
+      .case-nav {
+        display: grid;
+        gap: 18px;
+        margin-top: 32px;
+      }
+
+      .case-nav a {
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.3;
+        transition: color 180ms ease;
+      }
+
+      .case-nav a:hover {
+        color: var(--text);
       }
 
       .hero {
@@ -393,12 +426,27 @@
         filter: invert(1);
       }
 
-      @media (max-width: 920px) {
+      @media (max-width: 1180px) {
         .case-page {
+          grid-template-columns: 1fr;
           width: auto;
           padding: 12px;
         }
 
+        .case-back-column {
+          order: 0;
+        }
+
+        .case-content {
+          order: 1;
+        }
+
+        .case-aside {
+          display: none;
+        }
+      }
+
+      @media (max-width: 920px) {
         .hero-media {
           min-height: 430px;
         }
@@ -423,8 +471,9 @@
           padding: 8px;
         }
 
-        .topbar {
-          align-items: flex-start;
+        .back-link {
+          width: 88px;
+          height: 64px;
         }
 
         .hero,
@@ -467,63 +516,54 @@
   </head>
   <body>
     <main class="case-page">
-      <header class="topbar">
-        <a class="pill-link" href="index.html" aria-label="Вернуться на главную">
+      <div class="case-back-column">
+        <a class="back-link" href="index.html" aria-label="Вернуться на главную">
           <img src="assets/arrow.svg" alt="">
-          <span>Назад</span>
         </a>
+      </div>
 
-        <div class="theme-switch" role="radiogroup" aria-label="Тема оформления">
-          <button class="theme-option" type="button" data-theme-option="light" aria-label="Светлая тема" aria-pressed="true">
-            <img src="assets/sun.svg" alt="">
-          </button>
-          <button class="theme-option" type="button" data-theme-option="dark" aria-label="Темная тема" aria-pressed="false">
-            <img src="assets/moon.svg" alt="">
-          </button>
-        </div>
-      </header>
-
-      <article class="hero">
-        <div class="hero-media">
-          <img src="assets/localy-phones-v4.png" alt="Экраны мобильного приложения Localy">
-        </div>
-
-        <section class="hero-card" aria-labelledby="case-title">
-          <div class="tags">
-            <span class="tag">B2C</span>
-            <span class="tag">MOBILE</span>
-            <span class="tag">2026</span>
+      <div class="case-content">
+        <article class="hero">
+          <div class="hero-media">
+            <img src="assets/localy-phones-v4.png" alt="Экраны мобильного приложения Localy">
           </div>
 
-          <div class="hero-content">
-            <div>
-              <h1 id="case-title">Localy</h1>
-              <p class="lead">
-                Приложение для поиска компании по интересам и совместных встреч:
-                от сценариев и быстрых прототипов до визуальной системы мобильного продукта.
-              </p>
+          <section class="hero-card" aria-labelledby="case-title">
+            <div class="tags">
+              <span class="tag">B2C</span>
+              <span class="tag">MOBILE</span>
+              <span class="tag">2026</span>
             </div>
 
-            <dl class="meta">
-              <div class="meta-row">
-                <dt class="meta-label">Роль</dt>
-                <dd class="meta-value">Продуктовый дизайнер</dd>
+            <div class="hero-content">
+              <div>
+                <h1 id="case-title">Localy</h1>
+                <p class="lead">
+                  Приложение для поиска компании по интересам и совместных встреч:
+                  от сценариев и быстрых прототипов до визуальной системы мобильного продукта.
+                </p>
               </div>
-              <div class="meta-row">
-                <dt class="meta-label">Платформа</dt>
-                <dd class="meta-value">iOS, Android</dd>
-              </div>
-              <div class="meta-row">
-                <dt class="meta-label">Фокус</dt>
-                <dd class="meta-value">События, интересы, встречи</dd>
-              </div>
-            </dl>
-          </div>
-        </section>
-      </article>
 
-      <section class="content-grid" aria-label="Описание кейса">
-        <article class="section-card">
+              <dl class="meta">
+                <div class="meta-row">
+                  <dt class="meta-label">Роль</dt>
+                  <dd class="meta-value">Продуктовый дизайнер</dd>
+                </div>
+                <div class="meta-row">
+                  <dt class="meta-label">Платформа</dt>
+                  <dd class="meta-value">iOS, Android</dd>
+                </div>
+                <div class="meta-row">
+                  <dt class="meta-label">Фокус</dt>
+                  <dd class="meta-value">События, интересы, встречи</dd>
+                </div>
+              </dl>
+            </div>
+          </section>
+        </article>
+
+        <section class="content-grid" aria-label="Описание кейса">
+          <article class="section-card" id="context">
           <h2>Задача</h2>
           <p>
             Собрать понятный мобильный сценарий, в котором пользователь быстро
@@ -531,7 +571,7 @@
           </p>
         </article>
 
-        <article class="section-card">
+        <article class="section-card" id="structure">
           <h2>Решение</h2>
           <p>
             Главный экран строится вокруг карточек встреч, фильтров по интересам
@@ -539,7 +579,7 @@
           </p>
         </article>
 
-        <article class="section-card">
+        <article class="section-card" id="concept">
           <h2>Результат</h2>
           <p>
             Получился цельный прототип продукта: лента событий, профиль встречи,
@@ -547,7 +587,7 @@
           </p>
         </article>
 
-        <article class="section-card wide-card">
+        <article class="section-card wide-card" id="design-system">
           <h2>Что сделано</h2>
           <ul>
             <li>Спроектированы ключевые пользовательские сценарии поиска и выбора события.</li>
@@ -556,7 +596,7 @@
           </ul>
         </article>
 
-        <article class="section-card">
+        <article class="section-card" id="render">
           <h2>Дальше</h2>
           <p>
             Кейс можно расширить экранами создания встречи, онбордингом,
@@ -570,6 +610,28 @@
           <img src="assets/arrow.svg" alt="">
         </a>
       </nav>
+      </div>
+
+      <aside class="case-aside" aria-label="Содержание кейса">
+        <div class="case-aside-inner">
+          <div class="theme-switch" role="radiogroup" aria-label="Тема оформления">
+            <button class="theme-option" type="button" data-theme-option="light" aria-label="Светлая тема" aria-pressed="true">
+              <img src="assets/sun.svg" alt="">
+            </button>
+            <button class="theme-option" type="button" data-theme-option="dark" aria-label="Темная тема" aria-pressed="false">
+              <img src="assets/moon.svg" alt="">
+            </button>
+          </div>
+
+          <nav class="case-nav">
+            <a href="#context">Контекст</a>
+            <a href="#structure">Структура</a>
+            <a href="#concept">Концепция</a>
+            <a href="#design-system">Дизайн-система</a>
+            <a href="#render">Отрисовка</a>
+          </nav>
+        </div>
+      </aside>
     </main>
 
     <script>

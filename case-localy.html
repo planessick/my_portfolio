@@ -75,6 +75,8 @@
       .case-page {
         display: grid;
         grid-template-columns: minmax(0, 1fr) 240px;
+        position: relative;
+        left: 132px;
         gap: 24px;
         align-items: start;
         width: min(calc(100vw - 300px), 1184px);
@@ -436,6 +438,7 @@
       @media (max-width: 1180px) {
         .case-page {
           grid-template-columns: 1fr;
+          left: 0;
           width: auto;
           padding: 12px;
         }

@@ -77,7 +77,7 @@
         grid-template-columns: minmax(0, 1fr) 240px;
         gap: 24px;
         align-items: start;
-        width: min(calc(100vw - 200px), 1484px);
+        width: min(calc(100vw - 300px), 1184px);
         margin: 0 auto;
         padding: 24px 0 48px;
       }
@@ -85,13 +85,17 @@
       .case-back-column {
         display: flex;
         justify-content: flex-start;
-        position: static;
-        width: 100%;
-        margin-bottom: 24px;
+        position: absolute;
+        top: 0;
+        left: -96px;
+        z-index: 2;
+        width: 72px;
       }
 
       .case-content {
+        position: relative;
         min-width: 0;
+        padding-top: 72px;
       }
 
       .case-aside {
@@ -437,12 +441,14 @@
         }
 
         .case-back-column {
-          width: 100%;
+          position: static;
+          width: 72px;
           margin-bottom: 12px;
         }
 
         .case-content {
           order: 0;
+          padding-top: 0;
         }
 
         .case-aside {

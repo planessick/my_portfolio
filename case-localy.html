@@ -100,7 +100,9 @@
       }
 
       .case-topbar .case-back-column {
-        position: static;
+        position: fixed;
+        top: 24px;
+        left: max(24px, calc((100vw - min(calc(100vw - 300px), 1184px)) / 2 - 96px));
       }
 
       .case-content {

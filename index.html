@@ -241,24 +241,6 @@
       }
 
       .mail-link.is-copied .text-link-label {
-        opacity: 0;
-        transform: translateY(-4px);
-      }
-
-      .mail-link::after {
-        position: absolute;
-        left: 44px;
-        right: 16px;
-        color: currentColor;
-        content: "Почта скопирована";
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(4px);
-        transition: opacity 220ms var(--theme-ease), transform 220ms var(--theme-ease);
-        white-space: nowrap;
-      }
-
-      .mail-link.is-copied::after {
         opacity: 1;
         transform: translateY(0);
       }
@@ -692,9 +674,6 @@
                 <h1>Даниил Войнов</h1>
                 <div class="role">Продуктовый дизайнер</div>
               </div>
-              <a class="icon-button" href="https://t.me/" aria-label="Написать в Telegram">
-                <img src="assets/telegram.svg" alt="">
-              </a>
             </div>
 
             <nav class="links" aria-label="Контакты">
@@ -791,6 +770,8 @@
         }
 
         let resetTimer;
+        const label = mailButton.querySelector(".text-link-label");
+        const defaultLabel = label ? label.textContent : "";
 
         async function copyText(text) {
           if (navigator.clipboard && window.isSecureContext) {
@@ -811,10 +792,16 @@
 
         mailButton.addEventListener("click", async () => {
           await copyText(mailButton.dataset.email);
+          if (label) {
+            label.textContent = "Почта скопирована";
+          }
           mailButton.classList.add("is-copied");
           clearTimeout(resetTimer);
           resetTimer = setTimeout(() => {
             mailButton.classList.remove("is-copied");
+            if (label) {
+              label.textContent = defaultLabel;
+            }
           }, 1800);
         });
       })();

@@ -93,14 +93,14 @@
       }
 
       .case-topbar {
-        position: relative;
+        display: grid;
+        grid-template-columns: 0 minmax(0, 1fr);
+        align-items: center;
         margin-bottom: 16px;
       }
 
       .case-topbar .case-back-column {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: static;
       }
 
       .case-content {
@@ -132,7 +132,7 @@
         align-items: center;
         justify-content: center;
         width: 72px;
-        height: 48px;
+        height: 56px;
         border: 0;
         border-radius: 999px;
         background: var(--surface);
@@ -571,7 +571,7 @@
 
         .back-link {
           width: 72px;
-          height: 48px;
+          height: 40px;
         }
 
         .case-topbar {

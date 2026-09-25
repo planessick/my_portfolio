@@ -352,9 +352,11 @@
       }
 
       .project-media img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        width: calc(100% - 64px);
+        height: auto;
+        max-height: 712px;
+        margin: 24px auto 0;
+        object-fit: contain;
         object-position: center bottom;
         transform: scale(1);
         transform-origin: center bottom;
@@ -529,6 +531,11 @@
           height: 62vw;
           min-height: 320px;
         }
+
+        .project-media img {
+          width: calc(100% - 32px);
+          margin-top: 16px;
+        }
       }
 
       @media (max-width: 640px) {
@@ -668,7 +675,7 @@
       <section class="projects" aria-label="Проекты">
         <article class="project">
           <div class="project-media">
-            <img src="assets/localy-phones.png" alt="Экраны мобильного приложения Localy">
+            <img src="assets/localy-phones-hq.png" alt="Экраны мобильного приложения Localy">
           </div>
           <div class="project-info">
             <div class="tags">

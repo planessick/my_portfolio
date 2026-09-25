@@ -192,10 +192,11 @@
       }
 
       .links {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: max-content 1fr max-content;
         gap: 16px;
         margin-top: 32px;
+        width: 100%;
       }
 
       .text-link {
@@ -213,6 +214,7 @@
         line-height: 1.4;
         font-family: inherit;
         cursor: pointer;
+        justify-content: center;
         transition:
           background-color 360ms var(--theme-ease),
           color 360ms var(--theme-ease),
@@ -244,6 +246,7 @@
       .mail-label-stack {
         display: grid;
         align-items: center;
+        min-width: 138px;
         overflow: hidden;
         transition: width 320ms var(--theme-ease);
       }
@@ -652,6 +655,16 @@
 
         .bio {
           margin-top: 28px;
+        }
+
+        .links {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        .mail-label-stack {
+          min-width: 0;
         }
 
         .experience-card,

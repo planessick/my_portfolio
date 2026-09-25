@@ -326,6 +326,7 @@
       .projects {
         display: grid;
         gap: 16px;
+        align-content: start;
       }
 
       .project {
@@ -338,7 +339,7 @@
 
       .project-media {
         position: relative;
-        height: min(740px, 54vw);
+        height: min(712px, 54vw);
         min-height: 420px;
         overflow: hidden;
         border-radius: var(--radius-lg);
@@ -391,7 +392,7 @@
       .project-info {
         position: relative;
         z-index: 1;
-        min-height: 177px;
+        min-height: 186px;
         margin-top: -1px;
         border-radius: var(--radius-lg);
         background: var(--card);
@@ -425,13 +426,13 @@
         grid-template-columns: minmax(0, 1fr) auto;
         gap: 32px;
         align-items: end;
-        margin-top: 29px;
+        margin-top: 24px;
       }
 
       .project-title {
         color: var(--heading);
-        font-size: 24px;
-        line-height: 1.1;
+        font-size: 32px;
+        line-height: 1.18;
         transition: color 360ms var(--theme-ease);
       }
 
@@ -456,7 +457,7 @@
       }
 
       .case-link {
-        width: 80px;
+        width: 72px;
         background: var(--text);
         transition: background-color 360ms var(--theme-ease), transform 180ms ease, opacity 180ms ease;
       }
@@ -669,147 +670,24 @@
       <section class="projects" aria-label="Проекты">
         <article class="project">
           <div class="project-media">
-            <img src="assets/storage-app.png" alt="Экраны приложения для аренды кладовок">
+            <img src="assets/localy-phones.png" alt="Экраны мобильного приложения Localy">
           </div>
           <div class="project-info">
             <div class="tags">
-              <span class="tag">B2B</span>
               <span class="tag">B2C</span>
+              <span class="tag">MOBILE</span>
               <span class="tag">2026</span>
             </div>
             <div class="project-row">
               <div>
-                <h2 class="project-title">Приложение для аренды кладовок</h2>
+                <h2 class="project-title">Localy</h2>
                 <p class="project-description">
-                  Приложение за 2 месяца командой из четырех дизайнеров - от клиентской части до кабинета партнера
+                  Приложение для поиска компании по интересам и совместных встреч
                 </p>
               </div>
-              <a class="case-link" href="#" aria-label="Открыть кейс: Приложение для аренды кладовок">
+              <a class="case-link" href="#" aria-label="Открыть кейс: Localy">
                 <img src="assets/arrow.svg" alt="">
               </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="project-media">
-            <img src="assets/seller-cabinet.png" alt="Экраны личного кабинета селлера маркетплейса">
-          </div>
-          <div class="project-info">
-            <div class="tags">
-              <span class="tag">B2B</span>
-              <span class="tag">WEB</span>
-              <span class="tag">2025</span>
-            </div>
-            <div class="project-row">
-              <div>
-                <h2 class="project-title">Кабинет селлера маркетплейса</h2>
-                <p class="project-description">
-                  Кабинет селлера целиком работает с телефона: 41 сценарий уже в продакшене
-                </p>
-              </div>
-              <a class="case-link" href="#" aria-label="Открыть кейс: Кабинет селлера маркетплейса">
-                <img src="assets/arrow.svg" alt="">
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="project-media is-empty">
-            <div class="awards" aria-label="Награды">
-              <img src="assets/badge-ui.svg" alt="UI award">
-              <img src="assets/badge-dp.svg" alt="DP award">
-            </div>
-          </div>
-          <div class="project-info">
-            <div class="tags">
-              <span class="tag">B2B</span>
-              <span class="tag">2026</span>
-            </div>
-            <div class="project-row">
-              <div>
-                <h2 class="project-title">Сайт дизайн-студии Comence</h2>
-                <p class="project-description">Моушн для кейса на Behance - работа получила награды UI и DP</p>
-              </div>
-              <a class="case-link" href="#" aria-label="Открыть кейс: Сайт дизайн-студии Comence">
-                <img src="assets/external-arrow.svg" alt="">
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="project-media">
-            <img src="assets/link-bank.png" alt="Экраны приложения банка">
-          </div>
-          <div class="project-info">
-            <div class="tags">
-              <span class="tag">B2C</span>
-              <span class="tag">FinTech</span>
-              <span class="tag">2025</span>
-            </div>
-            <div class="project-row">
-              <div>
-                <h2 class="project-title">Приложение банка</h2>
-                <p class="project-description">
-                  Прошел путь от исследования до MVP: аналитика, прототип, юзабилити-тесты
-                </p>
-              </div>
-              <span class="soon">Скоро</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="project-media is-empty"></div>
-          <div class="project-info">
-            <div class="tags">
-              <span class="tag">B2C</span>
-              <span class="tag">2026</span>
-            </div>
-            <div class="project-row">
-              <div>
-                <h2 class="project-title">Сервис для криптотрейдинга</h2>
-                <p class="project-description">Моушн для кейса на Behance</p>
-              </div>
-              <span class="soon">Скоро</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="project-media is-empty"></div>
-          <div class="project-info">
-            <div class="tags">
-              <span class="tag">Animation</span>
-              <span class="tag">SwiftUI</span>
-            </div>
-            <div class="project-row">
-              <div>
-                <h2 class="project-title">Приложение с плейлистами</h2>
-                <p class="project-description">
-                  Сделал приложение для прослушивания музыки и создания своих плейлистов на чистом SwiftUI.
-                </p>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="project-media">
-            <img src="assets/etra.png" alt="Сайт для дизайнерских окон Etra">
-          </div>
-          <div class="project-info">
-            <div class="tags">
-              <span class="tag">Animation</span>
-              <span class="tag">2026</span>
-            </div>
-            <div class="project-row">
-              <div>
-                <h2 class="project-title">Сайт для дизайнерских окон «Etra»</h2>
-                <p class="project-description">Моушн для кейса на Behance</p>
-              </div>
             </div>
           </div>
         </article>

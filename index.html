@@ -193,8 +193,9 @@
 
       .links {
         display: grid;
-        grid-template-columns: max-content 1fr max-content;
+        grid-template-columns: max-content max-content max-content;
         gap: 16px;
+        justify-content: start;
         margin-top: 32px;
         width: 100%;
       }
@@ -246,9 +247,12 @@
       .mail-label-stack {
         display: grid;
         align-items: center;
-        min-width: 138px;
         overflow: hidden;
         transition: width 320ms var(--theme-ease);
+      }
+
+      .mail-label-stack {
+        width: 47px;
       }
 
       .mail-icon-stack {
@@ -279,10 +283,13 @@
 
       .mail-link.is-copied .mail-icon-copy,
       .mail-link.is-copied .mail-label-copied {
-        width: auto;
         opacity: 1;
         overflow: visible;
         transform: translateY(0) scale(1);
+      }
+
+      .mail-link.is-copied .mail-label-stack {
+        width: 142px;
       }
 
       .bio {

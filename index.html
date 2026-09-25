@@ -72,7 +72,6 @@
         height: 100%;
         overflow: auto;
         border-radius: var(--radius-lg);
-        padding-top: 62px;
       }
 
       .profile-card,
@@ -83,14 +82,11 @@
       }
 
       .profile-card {
-        min-height: 383px;
-        padding: 94px 32px 32px;
+        padding: 16px 32px 32px;
       }
 
       .portrait {
-        position: absolute;
-        top: -60px;
-        left: 32px;
+        position: relative;
         width: 140px;
         height: 140px;
         overflow: hidden;
@@ -105,11 +101,18 @@
         object-fit: cover;
       }
 
+      .profile-media-row,
       .profile-top {
-        display: grid;
-        grid-template-columns: 1fr 48px;
-        gap: 20px;
-        align-items: start;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 24px;
+        width: 100%;
+      }
+
+      .profile-top {
+        align-items: center;
+        margin-top: 24px;
       }
 
       h1,
@@ -136,7 +139,7 @@
 
       .icon-button {
         display: inline-grid;
-        width: 48px;
+        width: 72px;
         height: 48px;
         place-items: center;
         border-radius: 999px;
@@ -158,7 +161,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 16px;
-        margin-top: 29px;
+        margin-top: 32px;
       }
 
       .text-link {
@@ -176,32 +179,21 @@
       }
 
       .bio {
-        max-width: 505px;
-        margin: 62px 0 0;
+        margin: 32px 0 0;
         color: var(--muted);
         font-size: 16px;
         line-height: 1.4;
-      }
-
-      .tools-strip {
-        display: flex;
-        justify-content: flex-end;
-        height: 98px;
-        margin-top: -56px;
-        pointer-events: none;
       }
 
       .theme-switch {
         display: grid;
         grid-template-columns: 44px 44px;
         gap: 4px;
-        align-self: end;
         width: 104px;
         height: 49px;
         padding: 4px;
         border-radius: var(--radius-md);
         background: #f1f1f1;
-        pointer-events: auto;
       }
 
       .theme-switch span {
@@ -220,12 +212,13 @@
       }
 
       .experience-card {
-        margin-top: 19px;
-        padding: 16px 32px;
+        margin-top: 16px;
+        padding: 4px 32px;
       }
 
       .experience-item {
-        padding: 21px 0;
+        min-height: 80px;
+        padding: 20px 0;
         border-bottom: 1px solid var(--line);
       }
 
@@ -459,22 +452,21 @@
         }
 
         .profile-card {
-          padding: 84px 20px 24px;
+          padding: 16px 20px 24px;
         }
 
         .portrait {
-          left: 20px;
           width: 124px;
           height: 124px;
         }
 
+        .profile-media-row,
         .profile-top {
-          grid-template-columns: 1fr 48px;
           gap: 14px;
         }
 
         .bio {
-          margin-top: 42px;
+          margin-top: 28px;
         }
 
         .experience-card,
@@ -513,16 +505,16 @@
     <main class="page">
       <aside class="sidebar-shell" aria-label="Профиль">
         <div class="sidebar">
-          <section class="tools-strip" aria-label="Тема оформления">
-            <div class="theme-switch" aria-hidden="true">
-              <span><img src="assets/sun.svg" alt=""></span>
-              <span><img src="assets/moon.svg" alt=""></span>
-            </div>
-          </section>
-
           <section class="profile-card">
-            <div class="portrait">
-              <img src="assets/portrait.png" alt="Даниил Войнов">
+            <div class="profile-media-row">
+              <div class="portrait">
+                <img src="assets/portrait.png" alt="Даниил Войнов">
+              </div>
+
+              <div class="theme-switch" aria-label="Тема оформления">
+                <span><img src="assets/sun.svg" alt=""></span>
+                <span><img src="assets/moon.svg" alt=""></span>
+              </div>
             </div>
 
             <div class="profile-top">
@@ -547,28 +539,25 @@
             </nav>
 
             <p class="bio">
-              Проектирую мобильные приложения под iOS и web-кабинеты для B2B.
-              Собираю дизайн-системы с нуля. Опыт в доменах: авиация, проптех,
-              маркетплейсы. Прототипирую за часы и довожу идеи до рабочего кода.
+              Проектирую мобильные приложения для iOS и Android и веб-сайты.
+              Превращаю идеи в понятные интерфейсы, быстро собираю прототипы и
+              проверяю решения. Использую вайбкодинг, чтобы выходить за рамки
+              макетов и доводить дизайн до работающего продукта.
             </p>
           </section>
 
           <section class="experience-card" aria-label="Опыт">
             <article class="experience-item">
-              <div class="experience-title">«Внебо» - Продуктовый дизайнер</div>
-              <div class="experience-date">Апрель 2026 - Июль 2026</div>
+              <div class="experience-title">Фриланс - Продуктовый дизайнер</div>
+              <div class="experience-date">Март 2026 - Настоящее время</div>
             </article>
             <article class="experience-item">
-              <div class="experience-title">Студия MAX - UX/UI дизайнер</div>
+              <div class="experience-title">Студия X-instals - Продуктовый дизайнер</div>
               <div class="experience-date">Сентябрь 2025 - Март 2026</div>
             </article>
             <article class="experience-item">
-              <div class="experience-title">Агентство MMP - Веб-дизайнер</div>
+              <div class="experience-title">Сбербанк - UX/UI-дизайнер стажер</div>
               <div class="experience-date">Июнь 2025 - Сентябрь 2025</div>
-            </article>
-            <article class="experience-item">
-              <div class="experience-title">Фриланс - Веб-дизайнер</div>
-              <div class="experience-date">Январь 2025 - по настоящее время</div>
             </article>
           </section>
         </div>

@@ -87,22 +87,19 @@
       .case-back-column {
         display: flex;
         justify-content: flex-start;
-        transform: translateX(-96px);
         z-index: 2;
         width: 72px;
       }
 
       .case-topbar {
-        display: grid;
-        grid-template-columns: 0 minmax(0, 1fr);
-        align-items: center;
+        display: block;
         margin-bottom: 16px;
       }
 
       .case-topbar .case-back-column {
         position: fixed;
         top: 24px;
-        left: max(24px, calc((100vw - min(calc(100vw - 300px), 1184px)) / 2 - 96px));
+        left: var(--back-link-left, 24px);
       }
 
       .case-content {
@@ -764,6 +761,17 @@
         const viewSwitch = document.querySelector(".case-view-switch");
         const viewButtons = document.querySelectorAll("[data-view-option]");
 
+        function syncBackLinkPosition() {
+          const hero = document.querySelector(".hero");
+          if (!hero || window.matchMedia("(max-width: 1180px)").matches) {
+            root.style.removeProperty("--back-link-left");
+            return;
+          }
+
+          const left = Math.max(24, Math.round(hero.getBoundingClientRect().left - 96));
+          root.style.setProperty("--back-link-left", `${left}px`);
+        }
+
         function setTheme(theme) {
           root.dataset.theme = theme;
           localStorage.setItem("theme", theme);
@@ -791,6 +799,9 @@
         viewButtons.forEach((button) => {
           button.addEventListener("click", () => setCaseView(button.dataset.viewOption));
         });
+
+        syncBackLinkPosition();
+        window.addEventListener("resize", syncBackLinkPosition);
       })();
     </script>
   </body>

@@ -87,19 +87,17 @@
       .case-back-column {
         display: flex;
         justify-content: flex-start;
-        z-index: 2;
+        position: sticky;
+        top: 24px;
+        z-index: 3;
         width: 72px;
+        height: 0;
+        transform: translateX(-96px);
       }
 
       .case-topbar {
         display: block;
         margin-bottom: 16px;
-      }
-
-      .case-topbar .case-back-column {
-        position: fixed;
-        top: 24px;
-        left: var(--back-link-left, 24px);
       }
 
       .case-content {
@@ -519,6 +517,7 @@
         .case-back-column {
           position: static;
           width: 72px;
+          height: auto;
           transform: none;
         }
 
@@ -630,13 +629,13 @@
   <body>
     <main class="case-page">
       <div class="case-content">
-        <div class="case-topbar">
-          <div class="case-back-column">
+        <div class="case-back-column">
             <a class="back-link" href="index.html" aria-label="Вернуться на главную">
               <img src="assets/arrow.svg" alt="">
             </a>
           </div>
 
+        <div class="case-topbar">
           <div class="case-view-switch" data-active="full" role="radiogroup" aria-label="Формат кейса">
             <button type="button" data-view-option="full" aria-pressed="true">Полностью</button>
             <button type="button" data-view-option="short" aria-pressed="false">Кратко</button>
@@ -761,17 +760,6 @@
         const viewSwitch = document.querySelector(".case-view-switch");
         const viewButtons = document.querySelectorAll("[data-view-option]");
 
-        function syncBackLinkPosition() {
-          const hero = document.querySelector(".hero");
-          if (!hero || window.matchMedia("(max-width: 1180px)").matches) {
-            root.style.removeProperty("--back-link-left");
-            return;
-          }
-
-          const left = Math.max(24, Math.round(hero.getBoundingClientRect().left - 96));
-          root.style.setProperty("--back-link-left", `${left}px`);
-        }
-
         function setTheme(theme) {
           root.dataset.theme = theme;
           localStorage.setItem("theme", theme);
@@ -800,8 +788,6 @@
           button.addEventListener("click", () => setCaseView(button.dataset.viewOption));
         });
 
-        syncBackLinkPosition();
-        window.addEventListener("resize", syncBackLinkPosition);
       })();
     </script>
   </body>

@@ -339,8 +339,8 @@
 
       .project-media {
         position: relative;
-        height: min(712px, 54vw);
-        min-height: 420px;
+        height: clamp(520px, 56vw, 712px);
+        min-height: 520px;
         overflow: hidden;
         border-radius: var(--radius-lg);
         background: #f2f2f2;
@@ -352,9 +352,8 @@
       }
 
       .project-media img {
-        width: min(1220px, calc(100% - 48px));
+        width: min(1220px, calc(100% - 24px));
         height: auto;
-        max-height: 712px;
         margin: 24px auto 0;
         object-fit: contain;
         object-position: center bottom;
@@ -404,6 +403,7 @@
         position: relative;
         z-index: 1;
         min-height: 186px;
+        margin-top: -8px;
         border-radius: var(--radius-lg);
         background: var(--card);
         box-shadow: var(--shadow);
@@ -501,8 +501,8 @@
         }
 
         .project-media {
-          height: 54vw;
-          min-height: 360px;
+          height: clamp(430px, 56vw, 620px);
+          min-height: 430px;
         }
       }
 
@@ -529,11 +529,11 @@
 
         .project-media {
           height: 62vw;
-          min-height: 320px;
+          min-height: 340px;
         }
 
         .project-media img {
-          width: calc(100% - 32px);
+          width: calc(100% - 12px);
           margin-top: 16px;
         }
       }
@@ -580,7 +580,7 @@
         }
 
         .project-media {
-          min-height: 260px;
+          min-height: 280px;
         }
 
         .project-row {
